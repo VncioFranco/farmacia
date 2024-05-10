@@ -7,12 +7,14 @@ import Home from './pages/Home/Home'
 import FormularioCategoria from './components/categorias/formCategoria/FormCategoria'
 import ListarCategorias from './components/categorias/listarCategorias/ListarCategorias'
 import DeletarCategoria from './components/categorias/deletarCategoria/DeletarCategoria'
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
 
 
   return (
     <>
+    <ToastContainer />
       <BrowserRouter>
         <Navbar />
         <div className='min-h-[80vh]'>

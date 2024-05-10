@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { listar } from "../../../services/Service";
 import CardCategorias from "../cardCategoria/CardCategoria";
 import Categoria from "../../../models/Categoria";
+import { toastAlerta } from "../../../util/ToastAlerta";
 
 function ListaCategorias(){
     const [categorias,setCategorias] = useState <Categoria[]>([]);
@@ -18,7 +19,7 @@ function ListaCategorias(){
           });
         } catch (error: any) {
           if (error.toString().includes('403')) {
-            alert('O token expirou, favor logar novamente')
+            toastAlerta('O token expirou, favor logar novamente','info')
             
           }
         }
@@ -38,7 +39,7 @@ function ListaCategorias(){
               wrapperClass="dna-wrapper mx-auto"
             />
           )}
-          <div className="flex justify-center w-full my-4">
+          <div className=" flex justify-center w-full h-full">
             <div className="container flex flex-col">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {categorias.map((categoria) => (

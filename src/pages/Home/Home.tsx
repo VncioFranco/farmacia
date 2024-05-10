@@ -25,8 +25,13 @@ function Home() {
       
             </div>
           </div>
+          
         </div>
-      <ListaCategorias />
+        
+        <div className='bg-blue-400' >
+        <ListaCategorias />
+     
+      </div>
      
       </>
     );

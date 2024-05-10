@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { listar, deletar } from "../../../services/Service";
 import Categoria from "../../../models/Categoria";
+import { toastAlerta } from "../../../util/ToastAlerta";
 
 function DeletarCategoria() {
     const [categoria,setCategoria] = useState <Categoria>({} as Categoria);
@@ -16,7 +17,7 @@ function DeletarCategoria() {
             await listar(`/categorias/${id}`, setCategoria,{})
         }catch (error: any) {
             if (error.toString().includes('403')) {
-                alert('O token expirou, favor logar novamente')
+                toastAlerta('O token expirou, favor logar novamente','info')
         
     }
 }
@@ -36,10 +37,10 @@ async function deletarCategoria() {
     try {
         await deletar(`/categorias/${id}`, {})
 
-        alert('Tema apagado com sucesso')
+        toastAlerta('Tema apagado com sucesso','sucesso')
 
     } catch (error) {
-        alert('Erro ao apagar a categoria')
+        toastAlerta('Erro ao apagar a categoria','erro')
     }
 
     retornar()

@@ -3,6 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { atualizar, cadastrar, listar } from '../../../services/Service';
 import Categoria from '../../../models/Categoria';
+import { toastAlerta } from '../../../util/ToastAlerta';
 
 function FormularioCategoria() {
   
@@ -59,27 +60,27 @@ function FormularioCategoria() {
       try {
         await atualizar(`/categorias`, categoria, setCategorias)
 
-        alert('Categoria atualizada com sucesso')
+        toastAlerta('Categoria atualizada com sucesso','sucesso')
 
         retornar()
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
-          alert('o token expirou')
+          toastAlerta('o token expirou','info')
         } else {
-          alert('erro ao atualizar categoria')
+          toastAlerta('erro ao atualizar categoria','erro')
         }
       }
     } else {
       try {
         await cadastrar(`/categorias`, categoria, setCategorias)
 
-        alert('Categoria cadastrada com sucesso')
+        toastAlerta('Categoria cadastrada com sucesso','sucesso')
       } catch (error: any) {
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          toastAlerta('O token expirou, favor logar novamente','info')
         } else {
-          alert('Erro ao cadastrar categoria')
+          toastAlerta('Erro ao cadastrar categoria','erro')
         }
       }
     }
